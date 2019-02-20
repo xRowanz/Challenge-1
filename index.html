@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SpaceX</title>
+	<link rel="stylesheet" type="text/css" href="styles/layout.css">
+	<link rel="stylesheet" type="text/css" href="styles/main.css">
+	
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Voedsel', 'aantal'],
+          ['Water',     8],
+          ['Meat',      6],
+          ['Vegetables',  5],
+          
+        ]);
+
+        var options = {
+          title: ''
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['km/h', 24.937],
+          ['Acc', 55],
+          ['Fuel', 68]
+        ]);
+
+        var options = {
+          width: 400, height: 120,
+          redFrom: 90, redTo: 100,
+          yellowFrom:75, yellowTo: 90,
+
+          minorTicks: 2
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+
+        setInterval(function() {
+          data.setValue(0, 1, 15.093 + Math.round(20.021 * Math.random()));
+          chart.draw(data, options);
+        }, 13000);
+        setInterval(function() {
+          data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+          chart.draw(data, options);
+        }, 5000);
+        setInterval(function() {
+          data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
+          chart.draw(data, options);
+        }, 26000);
+      }
+    </script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		    <script type="text/javascript">
+		      google.charts.load('current', {'packages':['corechart']});
+		      google.charts.setOnLoadCallback(drawChart);
+
+		      function drawChart() {
+		        var data = google.visualization.arrayToDataTable([
+		          ['Year', 		'Pressure', 'Gravity'],
+		          ['Force',		1350,      	400],
+		          ['Up',  		1170,      	460],
+		          ['Down',  	660,       	1820],
+		          ['Distance',  1030,      	540]
+		        	]);
+
+		        var options = {
+		          title: '',
+		          curveType: 'function',
+		          legend: { position: 'bottom' }
+		        };
+
+		        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+		        chart.draw(data, options);
+		      }
+		    </script>
+
+		    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		  <script type="text/javascript">
+		    google.charts.load("current", {packages:["corechart"]});
+		    google.charts.setOnLoadCallback(drawChart);
+
+		    function drawChart() {
+		      var data = new google.visualization.DataTable();
+		      data.addColumn('number');
+		      data.addColumn('number');
+
+		      var radius = 200;
+		      for (var i = 0; i < 6.28; i += 0.1) {
+		        data.addRow([radius * Math.cos(i), radius * Math.sin(i)]);
+		      }
+
+		      // Our central point, which will jiggle.
+		      data.addRow([0, 0]);
+
+		      var options = {
+		        legend: 'none',
+		        colors: ['#087037'],
+		        pointShape: 'triangle',
+		        pointSize: 5,
+		        animation: {
+		          duration: 200,
+		          easing: 'inAndOut',
+		        }
+		      };
+
+		      var chart = new google.visualization.ScatterChart(document.getElementById('animatedshapes_div'));
+
+		      // Start the animation by listening to the first 'ready' event.
+		      google.visualization.events.addOneTimeListener(chart, 'ready', randomWalk);
+
+		      // Control all other animations by listening to the 'animationfinish' event.
+		      google.visualization.events.addListener(chart, 'animationfinish', randomWalk);
+
+		      chart.draw(data, options);
+
+		      function randomWalk() {
+		        var x = data.getValue(data.getNumberOfRows() - 1, 0);
+		        var y = data.getValue(data.getNumberOfRows() - 1, 1);
+		        x += 5 * (Math.random() - 0.5);
+		        y += 5 * (Math.random() - 0.5);
+		        if (x * x + y * y > radius * radius) {
+		          // Out of bounds. Bump toward center.
+		          x += Math.random() * ((x < 0) ? 5 : -5);
+		          y += Math.random() * ((y < 0) ? 5 : -5);
+		        }
+		        data.setValue(data.getNumberOfRows() - 1, 0, x);
+		        data.setValue(data.getNumberOfRows() - 1, 1, y);
+		        chart.draw(data, options);
+		      }
+		    }
+		  </script>
+
+		  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		    <script type="text/javascript">
+		      google.charts.load('current', {'packages':['bar']});
+		      google.charts.setOnLoadCallback(drawChart);
+
+		      function drawChart() {
+		        var data = google.visualization.arrayToDataTable([
+		          ['Year', 'Men', 'Women', 'Children'],
+		          ['2030', 	50, 	50, 		3],
+		          ['2035', 	52, 	51, 		8],
+		          ['2040', 	58, 	62, 		15],
+		          ['2045', 	71, 	70, 		23]
+		        ]);
+
+		        var options = {
+		          chart: {
+		            title: '',
+		            subtitle: '',
+		          }
+		        };
+
+		        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+		        chart.draw(data, google.charts.Bar.convertOptions(options));
+		      }
+		    </script>
+
+		    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		    <script type="text/javascript">
+		      google.charts.load('current', {'packages':['bar']});
+		      google.charts.setOnLoadCallback(drawChart);
+
+		      function drawChart() {
+		        var data = google.visualization.arrayToDataTable([
+		          ['', 'Men', 'Women',],
+		          ['Today', 78, 88 ],
+		          
+
+		        ]);
+
+		        var options = {
+		          chart: {
+		            title: '',
+		            subtitle: '',
+		          },
+		          bars: 'horizontal' // Required for Material Bar Charts.
+		        };
+
+		        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+		        chart.draw(data, google.charts.Bar.convertOptions(options));
+		      }
+		    </script>
+
+	
+</head>
+<body>
+	       <header class="grid-item header">
+	       	<div class="container">
+	        <img class= "img1" src="images/spacex2.png" width="300" height="40"/>
+            </div>
+            <div id="DigitalClock" class="clock"></div>
+
+            <script type="text/javascript">
+        		function showTime(){
+        			var date = new Date();
+        			var h = date.getHours();
+        			var m = date.getMinutes();
+        			var s = date.getSeconds();
+
+        			if ( h== 0){
+        					h = 24;
+        			}
+
+        			if (h > 24){
+        					h = h - 24;
+        			}
+
+        			h = (h < 10) ? "0" + h : h;
+        			m = (m < 10) ? "0" + m : m;
+        			s = (s < 10) ? "0" + s : s;
+
+        			var time = h + ":" + m + ":" + s;
+        			document.getElementById("DigitalClock").innerText = time;
+        			document.getElementById("DigitalClock").textContent = time;
+
+        			setTimeout(showTime, 1000);
+        		}
+
+        		showTime();
+
+        	</script>
+	    
+        </header>
+
+        <main class="grid-item main">
+        	<h2 id="food">Food <br> supply</h2>
+        	<div id="piechart" style="width: 350px; height: 170px;"></div>
+        </main>
+
+        <aside class="grid-item ad1">
+        	<h1>Spaceship information</h1>
+        	<div id="chart_div" style="width: 350px; height: 170px;"></div>
+        	
+	    </aside>
+
+        <aside class="grid-item ad2">
+        	<h1>G-force</h1>
+        	<div id="curve_chart" style="width: 350px; height: 170px"></div>
+ 			
+	    </aside>
+
+        <aside class="grid-item ad3">
+        	<h1>Stability ship</h1>
+        	<div id="animatedshapes_div" style="width: 350px; height: 170px;"></div>
+ 
+        </aside>
+
+        <aside class="grid-item ad4">
+        	<h1>Population</h1>
+        	 <div id="columnchart_material" style="width: 350px; height: 170px;"></div>
+  </body>
+	    </aside>
+
+	    <aside class="grid-item ad5">
+	    	<h1>Happiness </h1>
+	    	<div id="barchart_material" style="width: 350px; height: 170px;"></div>
+	    </aside>
+
+        <footer class="grid-item foot">
+          <p></p></footer>
+
+</body>
+
+</html>
+
+

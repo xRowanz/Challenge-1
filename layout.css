@@ -1,0 +1,110 @@
+  body{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  grid-template-areas: 
+        "title title"
+        "menu  menu"
+        "main  main"
+        "ad1   ad1"
+        "ad2   ad2"
+        "ad3   ad3"
+        "ad4   ad4"
+        "ad5   ad5"
+        "foot  foot "; 
+}
+
+.header, .main, .ad1, .ad2, .ad3, .ad4, .ad5, .foot{
+  padding: 0.2em 1em;
+}
+
+.header{
+  grid-area: title;
+    background-color: #000000;
+    padding: 1em;
+    border-radius: 5px;
+
+} 
+
+.main{
+  grid-area: main;
+    background-color: #FFFFFF;
+    padding: 1em;
+    border: 8px solid #005288;
+    border-radius: 5px;
+}
+
+.ad1 {
+  grid-area: ad1;
+    background-color: #FFFFFF;
+    padding: 1em;
+    border: 8px solid #005288;
+    border-radius: 5px;
+}
+.ad2 {
+  grid-area: ad2;
+    background-color: #FFFFFF;
+    padding: 1em;
+    border: 8px solid #005288;
+    border-radius: 5px;
+}
+
+.ad3 {
+  grid-area: ad3;
+    background-color: #FFFFFF;
+    padding: 1em;
+    border: 8px solid #005288;
+    border-radius: 5px;
+}
+
+.ad4 {
+  grid-area: ad4;
+    background-color: #FFFFFF;
+    padding: 1em;
+    border: 8px solid #005288;
+    border-radius: 5px;
+}
+
+.ad5 {
+  grid-area: ad5;
+    background-color: #FFFFFF;
+    padding: 1em;
+    border: 8px solid #005288;
+    border-radius: 5px;
+}
+
+.foot {
+  grid-area: foot;
+   
+}
+
+#piechart{
+  width: 100%;
+  margin: 0;
+  position: center;
+}
+
+@media only screen and (min-width: 520px){
+  body{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    grid-template-areas: 
+        "title title"
+        "main  ad1"
+        "ad2   ad3"
+        "ad4   ad5"
+        "foot foot"; 
+  }
+
+@media only screen and (min-width: 1024px){
+  body{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    grid-template-areas: 
+        "title title title"
+        "main  ad1   ad2"
+        "ad3   ad4   ad5"
+        "foot foot   foot"; 
+  }
